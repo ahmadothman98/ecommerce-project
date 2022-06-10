@@ -10,6 +10,6 @@ class Item extends Model
     use HasFactory;
 
     public function catag(){
-        return $this->belongsToMany(Catag::class);
+        return $this->belongsTo(Catag::class);
     }
 }

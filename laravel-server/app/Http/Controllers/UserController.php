@@ -21,6 +21,7 @@ class UserController extends Controller
             'name' => 'required|string|min:2|max:100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'phone_number' => 'required|numeric|digits:8'//lebanese numbers
         ]);
 
         if($validator->fails()) {
@@ -30,7 +31,8 @@ class UserController extends Controller
         $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'phone_number' => $request->phone_number
             ]);
 
         return response()->json([
@@ -64,17 +66,9 @@ class UserController extends Controller
     //
     //
 
-    public function logout()
-    {
-        auth()->logout();
-
-        return response()->json(['message' => 'User successfully logged out.']);
-    }
-
     //
     //
     //
-    
     protected function respondWithToken($token)
     {
         return response()->json([
