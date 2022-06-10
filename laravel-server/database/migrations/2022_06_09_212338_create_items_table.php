@@ -16,9 +16,9 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->binary('image'); // for blob
-            //<img src="data:image/jpeg;base64,'.base64_encode( $imageBlob ).'"/>
+            $table->text('description');
+            $table->double('price',14,2);
+            $table->text('image'); 
             $table->timestamps();
         });
     }

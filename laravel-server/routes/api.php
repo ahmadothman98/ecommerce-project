@@ -19,13 +19,16 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 //Route::group(['middleware' => 'api'], function($router) {
     Route::get('/get_items/{id?}',[ItemController::class,'getItems']);
     Route::post('/login',[UserController::class,'login']);
-    Route::post('/logout',[UserController::class,'logout']);
     Route::post('/register',[UserController::class,'register']);
     Route::post('/upload_catagory',[CatagController::class,'uploadCatagory']);
-    Route::post('/upload_item',[ItemController::class,'uploadItem']);
-
     Route::post('favorite',[ItemController::class,'favorite']);
+
+Route::group(['middleware' => 'role.user'], function(){
+    Route::post('/upload_item',[ItemController::class,'uploadItem']);
+});
+
 //});
