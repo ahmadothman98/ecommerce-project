@@ -1,94 +1,46 @@
-const electron = require('electron');
-const url = require('url');
-const path = require('path');
+const { app, BrowserWindow } = require('electron')
+let win;
 
-const {app, BrowserWindow, Menu} = electron;
+function createWindow() {
+// Create the browser window.
+win = new BrowserWindow({
+	width: 800,
+	height: 600,
+	webPreferences: {
+	nodeIntegration: true
+	}
+})
 
-let mainWindow;
+// and load the index.html of the app.
+win.loadFile('index.html')
 
-app.on('ready', function(){
-    //create new window
-    mainWindow = new BrowserWindow({});
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'main.html'),
-        protocol: 'file:',
-        slashes: true
-    }));
-    mainWindow.on('closed', function(){
-        app.quit();
-    })
-    
+// Open the DevTools.
+// win.webContents.openDevTools()
 
-    //Build the menue from the tmplate
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    //insert the menu
-    Menu.setApplicationMenu(mainMenu)
+//Quit app when main BrowserWindow Instance is closed
+win.on('closed', function () {
+	app.quit();
 });
-    // Handle add item window
-
-function addItem(){
-    addItemWindow = new BrowserWindow({
-       width: 300,
-       height: 200,
-       title: 'Add Shopping List Item' 
-    });
-
-    addItemWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'addItem.html'),
-        protocol: 'file',
-        slashes: true
-    }));
-    addItemWindow.on('close',function(){
-        addItemWindow = null;
-        //garbage handling
-    });
-
 }
 
-//create menu template
+// This method will be called when the Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.whenReady().then(createWindow)
 
- const mainMenuTemplate = [
-     {
-         label: 'File',
-         submenu:[
-             {
-                 label: 'Add Item',
-                 click(){
-                     addItem();
-                 }
-             },
-             {
-                 label: 'Add Catagory'
-             },
-             {
-                 label:'Quit',
-                 //add key shortcut, if mac cmd+Q if other ctrl+Q
-                 accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-                 click(){
-                     app.quit();
-                 }
-             }
-         ]
-
-     },
-     {
-        label: 'Developer Tools',
-         submenu:[
-             {
-                 label: 'Toggle DevTools',
-                 accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
-                 click(item,focusedWindow){
-                     focusedWindow.toggleDevTools();
-                 }
-             },
-             {
-                role: 'reload'
-             }
-         ]
-     }
- ];
-
-// for mac users
-if(process.platform == 'darwin'){
-    mainMenuTemplate.unshift({});//adds empty object to menu 
+// Quit when all windows are closed.
+app.on('window-all-closed', () => {
+// On macOS it is common for applications and their menu bar
+// to stay active until the user quits explicitly with Cmd + Q
+if (process.platform !== 'darwin') {
+	app.quit()
 }
+})
+
+app.on('activate', () => {
+// On macOS it's common to re-create a window in the app when the
+// dock icon is clicked and there are no other windows open.
+if (BrowserWindow.getAllWindows().length === 0) {
+	createWindow()
+}
+})
