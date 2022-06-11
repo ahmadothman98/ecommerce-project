@@ -21,6 +21,7 @@ class UserMiddleware
         if($user){
             return $next($request);
         }
-        return null;
+        return redirect(route("need-to-login"));
+
     }
 }

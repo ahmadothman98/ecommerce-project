@@ -4,29 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Catagory;
+use App\Models\Category;
 
-class CatagController extends Controller
+class CategoryController extends Controller
 {
-    public function addCatagory(Request $request){
-        $category = new Catagory;
+    public function addCategory(Request $request){
+        $category = new Category;
         $category -> name = $request -> name;
         $category -> image = $request -> image;
         $category -> save();
+        return response()->json([
+            'message' => 'Category successfully added',
+            'category' => $category
+        ], 201);
     }
-    public function getCatagories($id){
+    public function getCategories($id){
         if(!$id){
-            $catagories = Catagory::All();
+            $categories = Category::All();
             return response()->json([
                 'message' => "success",
-                'catagories' => $catagories
+                'categories' => $categories
             ],200);
         }
         else{
-            $catagory = Catagory::find($id);
+            $category = Category::find($id);
             return response()->json([
                 'message' => "success",
-                'catagory' => $catagory
+                'category' => $category
             ],200);
         }
     }

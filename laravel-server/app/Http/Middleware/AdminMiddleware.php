@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class UserMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.

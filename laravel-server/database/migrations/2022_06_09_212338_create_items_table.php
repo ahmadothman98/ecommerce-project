@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->double('price',14,2);
             $table->text('image')->nullable(); 
-            $table->integer('catagory_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
