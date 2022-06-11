@@ -11,7 +11,7 @@ app.on('ready', function(){
     mainWindow = new BrowserWindow({});
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'main.html'),
-        protocol: 'file',
+        protocol: 'file:',
         slashes: true
     }));
     mainWindow.on('closed', function(){
@@ -69,6 +69,22 @@ function addItem(){
                  }
              }
          ]
+
+     },
+     {
+        label: 'Developer Tools',
+         submenu:[
+             {
+                 label: 'Toggle DevTools',
+                 accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                 click(item,focusedWindow){
+                     focusedWindow.toggleDevTools();
+                 }
+             },
+             {
+                role: 'reload'
+             }
+         ]
      }
  ];
 
@@ -76,4 +92,3 @@ function addItem(){
 if(process.platform == 'darwin'){
     mainMenuTemplate.unshift({});//adds empty object to menu 
 }
-
