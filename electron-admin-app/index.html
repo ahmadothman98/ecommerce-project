@@ -16,7 +16,57 @@
       <span id="categs_nav" class="active">Categories</span>
       <span id = "items_nav">Items</span>
       <span id = "users_nav">Users</span>
-    </div>    
+    </div>   
+    <div id="1" class="">
+      <div class="add-new">
+        <div name="" id="add_cat_btn" class="add-btn">Add Category</div>
+        <div id="add_cat_form" class="hidden">
+              <label for="new_cat_name">Category Name:</label>
+              <input type="text" name="" id="new_cat_name">
+              <label for="new_cat_img">Category Img</label>
+              <input type="file" name="" id="">
+            <button>Submit Category</button>
+        </div>
+      </div>
+
+      <div id="categs_list" >
+        <div id="cat_0" class="category">
+          <img src="./assets/img/cat_0.png" alt="cat_name">
+          <h3 id="cat_name_0">Category Name</h3>
+        </div>
+        <hr>
+        <div id="cat_0" class="category">
+          <img src="./assets/img/cat_0.png" alt="cat_name">
+          <h3 id="cat_name_0">Category Name</h3>
+        </div>
+
+      </div>
+    </div>
+    <div id="2" class="hidden">
+      <div class="add-new">
+        <div name="" id="add_item_btn" class="add-btn">Add Item</div>
+        <div id="add_item_form" class="hidden">
+              <label for="new_item_name">Item Name:</label>
+              <input type="text" name="" id="new_item_name">
+              <label for="item_price"></label>
+              <label for="new_item_img">Item Img</label>
+              <input type="file" name="" id="new_item_img">
+            <button>Submit Item</button>
+        </div>
+      </div>
+      <div id="items_list">
+        <div id="item_0" class="item">
+          <img src="./assets/img/item_0.png" alt="Item_name">
+          <h3 id="item_name_0">Item Name</h3>
+        </div>
+        <hr>
+        <div id="item_0" class="item">
+          <img src="./assets/img/item_0.png" alt="Item_name">
+          <h3 id="item_name_0">Item Name</h3>
+        </div>
+      </div>
+  
+    </div>
 
     <script src="index.js"></script>
 </body>
