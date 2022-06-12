@@ -18,7 +18,7 @@ class CategoryController extends Controller
             'category' => $category
         ], 201);
     }
-    public function getCategories($id){
+    public function getCategories($id = 0){
         if(!$id){
             $categories = Category::All();
             return response()->json([
