@@ -23,15 +23,17 @@
 }
 .categories{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .category{
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 20px;
     position: relative;
     background-color: #000;
-    width: 33%;
+    width :300px;
+    cursor: pointer;
 
 }
 .category h3{
@@ -43,6 +45,7 @@
     background-color: rgb(150,200,200,50%);
     color: #000 ;
     width: 100%;
+    font-size: 24px;
 }
 .category img{
     background-color: #fff;
