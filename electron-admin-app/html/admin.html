@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="./../css/index.css">
+
+</head>
+<body>
+    <h1>Admin panel</h1>
+    <div class="navbar">
+      <span id="categs_nav" >Categories</span>
+      <span id = "items_nav">Items</span>
+    </div>   
+    <div id="first" class="">
+      <div class="add-new">
+        <div name="" id="add_cat_btn" class="add-btn">Add Category</div>
+        <div id="add_cat_form" class="hidden">
+          <div>
+            <label for="new_cat_name">Category Name:</label>
+            <input type="text" name="" id="new_cat_name">
+             
+          </div>  
+          <div>
+            <label for="new_cat_img">Category Img</label>
+            <input type="text" name="" id="new_cat_image">
+            
+          </div>
+             <button id="submit_cat_btn">Submit Category</button>
+        </div>
+      </div>
+
+      <div id="categs_list" ></div>
+    </div>
+    <div id="second">
+      <div class="add-new">
+        <div name="" id="add_item_btn" class="add-btn">Add Item</div>
+        <div id="add_item_form" class="hidden">
+            <div>
+              <label for="item_name">Item Name:</label>
+              <input type="text" name="" id="item_name">
+            </div>
+            <div>
+              <label for="item_description">Item Description:</label>
+              <textarea name="" id="item_description"></textarea>
+            </div>
+              
+            <div>
+              <label for="item_price">Item Price:</label>
+              <input type="number" name="" id="item_price">
+            </div>
+
+            <div>
+              <label for="item_img">Item Image File Fame:</label>
+              <input type="text" name="" id="item_img">
+            </div>
+            
+            <div>
+              <label for="category_selector">Item's Category</label>
+              <select type="select" name="" id="category_selector"></select>
+            </div>
+              <button id = "submit_item_btn">Submit Item</button>
+        </div>
+      </div>
+      <div class="item-titles">
+        <div>Item</div>
+        <div>Price</div>
+        <div>Category</div>
+      </div>
+      <div id="items_list" ></div>
+  
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./../js/admin.js"></script>
+</body>
+</html>

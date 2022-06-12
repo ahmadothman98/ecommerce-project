@@ -33,17 +33,46 @@ hr{
     padding: 5px;
     border-radius: 5px;
     margin: 10px;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    padding-top: 25px;
+    cursor: pointer;
 }
+
 .add-new{
+    font-size: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-items: flex-start;
     background-color: #999;
     margin: 20px;
 }
-
+label,input,select{
+    margin: 5px;
+}
+input,select{
+    height: 30px;
+    width: 300px;
+}
+textarea{
+    width: 300px;
+}
+#add_item_form{
+    width: 100%;
+}
+.item-titles{
+    display: flex;
+    justify-content: space-between;
+    background-color: #789;
+    margin: 20px;
+    color: white;
+    font-size: 24px;
+    padding: 0 20px;
+}
 .category,.item{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0 0 0 10px;
     height: 80px;
     background-color: #444;
@@ -52,11 +81,13 @@ hr{
 
 
 }
-.category h3,.item h3{
-
+.category h3,.item h3,h4{
     margin-left: 30px;
     color: white ;
     width: 100%;
+}
+.item p{
+    color: white ;
 }
 .category img,.item img{
     height: 100%;
@@ -67,4 +98,10 @@ hr{
 }
 .hidden{
     display: none;
+}
+
+#submit_cat_btn,#submit_item_btn{
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }

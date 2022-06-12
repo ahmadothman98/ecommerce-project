@@ -35,6 +35,12 @@ class ItemController extends Controller
     public function getItems($id = null){
         if(!$id){
             $items = Item::all();
+            foreach($items as $item){
+                //avoid errors if category not found
+                if(Category::where('id',$item->category_id)){
+                    $item->category_name =  Category::where('id',$item->category_id)->value('name');
+                }             
+            }
             return response() -> json([
                 'status' => 'success',
                 'items' => $items
@@ -42,8 +48,11 @@ class ItemController extends Controller
         }
         else{
             $item = Item::find($id);
-            $item->category_name = Category::find($item->category_id)->value('name');
-            
+
+            //avoid errors if category not found
+            if(Category::where('id',$item->category_id)){
+                $item->category_name =  Category::where('id',$item->category_id)->value('name');
+            }
             ////check if user has the item as favorite
             $user = Auth::user();
             if($user){

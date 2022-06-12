@@ -11,36 +11,24 @@ win = new BrowserWindow({
 	}
 })
 
-// and load the index.html of the app.
-win.loadFile('index.html')
+win.loadFile('./html/login.html')
 
-// Open the DevTools.
-// win.webContents.openDevTools()
-
-//Quit app when main BrowserWindow Instance is closed
 win.on('closed', function () {
-	app.quit();
+	app.quit();//quit app when window closed
 });
 }
 
-// This method will be called when the Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-// On macOS it is common for applications and their menu bar
-// to stay active until the user quits explicitly with Cmd + Q
 if (process.platform !== 'darwin') {
-	app.quit()
+	app.quit() //for mac users
 }
 })
 
 app.on('activate', () => {
-// On macOS it's common to re-create a window in the app when the
-// dock icon is clicked and there are no other windows open.
-if (BrowserWindow.getAllWindows().length === 0) {
+if (BrowserWindow.getAllWindows().length === 0) {//to prevent multiple windows on mac
 	createWindow()
 }
 })
