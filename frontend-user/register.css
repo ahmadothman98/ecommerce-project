@@ -7,16 +7,6 @@ body{
     background-color: #34495E;
     position: relative;
 }
-h1{
-    font-family:Impact, Haettenschweiler, 'Arial', sans-serif;
-    font-weight: normal !important;
-}
-hr{
-    width: 50px ;
-    height: 0;
-    margin: 10px;
-    color: white;
-}
 .container{
     width: 100%;
     height: 100%;
@@ -26,7 +16,7 @@ hr{
     align-items: center;
     justify-items: center;
 }
-.login-form{
+.register-form{
     background-color: #ECF0F1;
     display: flex;
     flex-direction: column;
@@ -35,7 +25,7 @@ hr{
     border-radius: 5px;
     margin-bottom: auto;
 }
-.login-form input{
+.register-form input{
     margin-bottom: 10px;
     height: 40px;
     border-radius: 4px;
@@ -48,22 +38,26 @@ hr{
     justify-content: center;
     color: white;
 }
-
-.register-sentence{
-    margin-left: 10px;
-    font-size: 14px;
+h1{
+    font-family:Impact, Haettenschweiler, 'Arial', sans-serif;
+    font-weight: normal !important;
 }
-
-#email,#password{
+hr{
+    width: 50px ;
+    height: 0;
+    margin: 10px;
+    color: white;
+}
+input{
     padding-left: 10px;
     color: #34495E;
 }
-#login{
+#register{
     background-color: #243B51;
     color: white;
     font-weight: bold;
 }
-#login:hover{
+#register:hover{
     background-color: #34495E;
     cursor: pointer;
 }
