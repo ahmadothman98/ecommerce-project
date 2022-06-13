@@ -135,6 +135,7 @@ function appendCategories(cat_list){
 ////////
 function addfavorite(id){
     var item_id = id.replace("fav_btn_","");
+    
     var url =  'http://127.0.0.1:8000/api/favorite';
     var data = new FormData();
     data.append('item_id', item_id);
@@ -149,11 +150,26 @@ function addfavorite(id){
     })
     .then(function (response){
         console.log(response.data)
-        if(response.data['is_favorite']){
-            document.querySelector('.favorite').classList.add('favorited')
+        if(!response.data['is_favorite']){
+            var fav_id = '#' + id;
+            // console.log(fav_id);
+            document.querySelector(fav_id).classList.add('favorited')
+            var fav_btn_html = document.getElementById(id);
+            var content = fav_btn_html.innerHTML;
+            fav_btn_html= fav_btn_html; 
         }
         else{
-            document.querySelector('.favorite').classList.remove('favorited')
+            var fav_id = '#' + id;
+            // console.log(fav_id);
+            document.querySelector(fav_id).classList.remove('favorited')
+            var fav_btn_html = document.getElementById(id);
+            var content = fav_btn_html.innerHTML;
+            fav_btn_html= fav_btn_html; 
         }
+
     });
+    
+    // console.log(fav_btn_html)
+    // console.log(id)
+
 }
