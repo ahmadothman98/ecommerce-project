@@ -78,6 +78,13 @@ class ItemController extends Controller
     }
     public function getItemsByCategory($id){
         $items = Item::where('category_id',$id)->get();
+    
+        foreach($items as $item){
+            //avoid errors if category not found
+            if(Category::where('id',$item->category_id)){
+                $item->category_name =  Category::where('id',$item->category_id)->value('name');
+            }             
+        }
         return response() -> json([
             'status' => 'success',
             'items' => $items
