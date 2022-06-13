@@ -1,4 +1,4 @@
-# Seed Database after migration using : php artisan bd:seed
+# Seed Database after migration using : php artisan db:seed
 # 
 # admin email: admin@gmail.com
 # admin password: admin123
