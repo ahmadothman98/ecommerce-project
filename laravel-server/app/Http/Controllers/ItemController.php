@@ -61,7 +61,7 @@ class ItemController extends Controller
                     'item_id',$item->id
                 ]);
                 if($is_favorite){
-                    $item->$is_favorite = true;
+                    $item->is_favorite = true;
                 }
                 else{
                     $item->is_favorite = false;
@@ -83,6 +83,24 @@ class ItemController extends Controller
             //avoid errors if category not found
             if(Category::where('id',$item->category_id)){
                 $item->category_name =  Category::where('id',$item->category_id)->value('name');
+            }
+
+            $user = Auth::user();
+            $item->is_favorite = $user;
+
+            if($user){
+                $is_favorite = Favorite::where([
+                    'user_id',$user->id,
+                    'item_id',$item->id
+                ]);
+                if($is_favorite){
+                    $item->is_favorite = 'true';
+                }
+                else{
+                    $item->is_favorite = 'false';
+                }
+            /////////////
+
             }             
         }
         return response() -> json([
@@ -90,10 +108,10 @@ class ItemController extends Controller
             'items' => $items
         ],200);
     }
-    public function addFavorite($id){
+    public function addFavorite(Request $request){
         $favorite = new Favorite;
         $favorite->user_id = Auth::user()->id;
-        $favorite->item_id = $id;
+        $favorite->item_id = $request->item_id;
         $favorite -> save();
 
         return response() -> json([

@@ -30,7 +30,7 @@ Route::post('/login',[UserController::class,'login'])->name('login');
 Route::post('/register',[UserController::class,'register'])->name('login');
 
 Route::group(['middleware' => 'role.user'], function(){
-    Route::post('/favorite/{id}',[ItemController::class,'addFavorite'])->name('favorite');
+    Route::post('/favorite',[ItemController::class,'addFavorite'])->name('favorite');
 });
 Route::get('/need_to_login',[ItemController::class,'needToLogin'])->name('need-to-login');
 
