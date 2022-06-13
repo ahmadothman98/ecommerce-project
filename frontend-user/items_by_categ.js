@@ -96,10 +96,11 @@ function appendNewItem(item_data){
     favorite_btn.classList.add('favorite');
     if(is_favorite){
         favorite_btn.classList.add('favorited');
+        favorite_btn.addEventListener('click',function(){
+            addfavorite(this.id);
+        })
     }
-    favorite_btn.addEventListener('click',function(){
-        addfavorite(this.id);
-    })
+
     //appending elements
     item_image_div.appendChild(img_elem);
     new_item.appendChild(item_image_div);
