@@ -86,14 +86,12 @@ class ItemController extends Controller
             }
 
             $user = Auth::user();
-            $item->is_favorite = $user;
-
             if($user){
-                $is_favorite = Favorite::where([
-                    'user_id',$user->id,
-                    'item_id',$item->id
-                ]);
-                if($is_favorite){
+                $is_favorite = Favorite::select('*')
+                ->where('user_id','=',$user->id)
+                ->where('item_id','=',$item->id)
+                ->get();
+                if(count($is_favorite)){
                     $item->is_favorite = 'true';
                 }
                 else{
@@ -109,14 +107,36 @@ class ItemController extends Controller
         ],200);
     }
     public function addFavorite(Request $request){
-        $favorite = new Favorite;
-        $favorite->user_id = Auth::user()->id;
-        $favorite->item_id = $request->item_id;
-        $favorite -> save();
+        $user = Auth::user();
+        if($user){
+            $is_favorite = Favorite::select('*')
+                        ->where('user_id','=',$user->id)
+                        ->where('item_id','=',$request->item_id)
+                        ->get();
+            $is_favorite = count($is_favorite);
+            if(!$is_favorite){
+                $favorite = new Favorite;
+                $favorite->user_id = $user->id;
+                $favorite->item_id = $request->item_id;
+                $favorite -> save();
+                return response() -> json([
+                    'status' => 'success',
+                    'is_favorite' => $is_favorite
+                ],200);
+        }
+        else{
+            $is_favorite = Favorite::select('*')
+                ->where('user_id','=',$user->id)
+                ->where('item_id','=',$request->item_id)
+                ->delete();
 
-        return response() -> json([
-            'status' => 'success'
-        ],200);
+            return response() -> json([
+                'status' => 'success',
+                'is_favorite' => $is_favorite
+            ],200);
+        }
+        }
+
     }
     public function needToLogin(){
         return response() -> json([

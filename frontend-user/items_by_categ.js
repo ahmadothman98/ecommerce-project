@@ -94,12 +94,15 @@ function appendNewItem(item_data){
     favorite_btn.id = "fav_btn_"+item_data['id'];
     favorite_btn.src="./assets/img/favorite.png"
     favorite_btn.classList.add('favorite');
-    if(is_favorite){
+    console.log(item_data['is_favorite']);
+
+    if(item_data['is_favorite']==='true'){
         favorite_btn.classList.add('favorited');
-        favorite_btn.addEventListener('click',function(){
-            addfavorite(this.id);
-        })
+
     }
+    favorite_btn.addEventListener('click',function(){
+        addfavorite(this.id);
+    })
 
     //appending elements
     item_image_div.appendChild(img_elem);
@@ -109,6 +112,7 @@ function appendNewItem(item_data){
     new_item.appendChild(price_elem);
     new_item.appendChild(favorite_btn);
     document.querySelector('#items').appendChild(new_item);
+
 }
 
 ///////////////
@@ -138,13 +142,18 @@ function addfavorite(id){
         method: 'post',
         url: url,
         data:data,
-        data:data,
         headers: {
             Authorization:`Bearer ${localStorage.getItem('access_token')}`,
         },
         
     })
     .then(function (response){
-        document.querySelector('.favorite').classList.add('favorited')
+        console.log(response.data)
+        if(response.data['is_favorite']){
+            document.querySelector('.favorite').classList.add('favorited')
+        }
+        else{
+            document.querySelector('.favorite').classList.remove('favorited')
+        }
     });
 }
