@@ -80,6 +80,8 @@ function loadCategories(){
         url: 'http://127.0.0.1:8000/api/get_categories'
     })
     .then(function (response){
+        console.log(response.data)
+        console.log("data categ")
         for(let i = 0; i<response.data.categories.length;i++){
             //appennd categories
             var cat_name = response.data.categories[i]['name'];

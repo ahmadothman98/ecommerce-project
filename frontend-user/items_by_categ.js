@@ -19,7 +19,7 @@ function loadItemsByCategoryId(id){
         method: 'get',
         url: url,
         headers: {
-            Authorization:`Bearer ${localStorage.getItem("access_token")}`,
+            Authorization:`Bearer ${sessionStorage.getItem("access_token")}`,
         },
         
     })
@@ -144,7 +144,7 @@ function addfavorite(id){
         url: url,
         data:data,
         headers: {
-            Authorization:`Bearer ${localStorage.getItem('access_token')}`,
+            Authorization:`Bearer ${sessionStorage.getItem('access_token')}`,
         },
         
     })

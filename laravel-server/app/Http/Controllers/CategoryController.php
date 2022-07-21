@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 
+use Illuminate\Support\Facades\Storage;
+
 class CategoryController extends Controller
 {
     public function addCategory(Request $request){
         $category = new Category;
         $category -> name = $request -> name;
-        $category -> image = $request -> image;
+        //if($request->hasFile('image')){
+            $category->image = "$request->image->store('/Assets/img')";
+    //    } 
         $category -> save();
         return response()->json([
             'message' => 'Category successfully added',
@@ -21,6 +25,7 @@ class CategoryController extends Controller
     public function getCategories($id = 0){
         if(!$id){
             $categories = Category::All();
+
             return response()->json([
                 'message' => "success",
                 'categories' => $categories

@@ -10,8 +10,8 @@ document.querySelector("#login").addEventListener('click',function(){
         data : data
     })
     .then(function(response){
-        localStorage.setItem('access_token',response.data['access_token']);
-//        console.log(localStorage.getItem('access_token'));
+        sessionStorage.setItem('access_token',response.data['access_token']);
+//        console.log(sessionStorage.getItem('access_token'));
         window.location.href="./index.html";
     }).catch(function(e){
         throwError(e);
